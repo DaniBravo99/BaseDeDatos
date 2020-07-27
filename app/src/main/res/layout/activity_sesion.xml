@@ -6,85 +6,110 @@
     android:layout_height="match_parent"
     tools:context=".Sesion">
 
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:text="BIENVENIDO"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <EditText
         android:id="@+id/txtmail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_width="288dp"
+        android:layout_height="44dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="52dp"
+        android:background="@drawable/tema_caja_txt"
+        android:drawableLeft="@drawable/ic_baseline_account_circle_24"
         android:ems="10"
         android:hint="@string/txtmail"
         android:inputType="textPersonName"
+        android:padding="10dp"
+        android:textAlignment="center"
+        android:textColor="@color/colorAccent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageButton" />
-
-    <EditText
-        android:id="@+id/txtcontra"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:ems="10"
-        android:hint="@string/txtcontra"
-        android:inputType="textPassword"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtmail" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView4" />
 
     <Button
         android:id="@+id/btningresar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="115dp"
+        android:layout_height="41dp"
         android:layout_marginStart="76dp"
-
         android:layout_marginLeft="76dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/animacion_boton_azul"
+        android:fontFamily="sans-serif-condensed-medium"
         android:onClick="btningresar"
         android:text="@string/btningresar"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display2"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:typeface="normal"
         app:layout_constraintEnd_toStartOf="@+id/btneliminar"
-        app:layout_constraintHorizontal_bias="0.024"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtcontra" />
 
     <Button
         android:id="@+id/btneliminar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_width="115dp"
+        android:layout_height="41dp"
+        android:layout_marginTop="40dp"
         android:layout_marginEnd="76dp"
         android:layout_marginRight="76dp"
+        android:background="@drawable/animacion_boton_rojo"
+        android:fontFamily="sans-serif-condensed-medium"
         android:onClick="btneliminar"
         android:text="@string/btneliminar"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display2"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:typeface="normal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtcontra" />
 
-    <ImageButton
-        android:id="@+id/imageButton"
-        android:layout_width="332dp"
-        android:layout_height="134dp"
-        android:layout_marginTop="23dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3"
-        app:srcCompat="@drawable/logo" />
-
     <Button
         android:id="@+id/salir"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_width="115dp"
+        android:layout_height="41dp"
+        android:layout_marginTop="28dp"
+        android:background="@drawable/animacion_boton_amarillo"
+        android:fontFamily="sans-serif-condensed-medium"
         android:onClick="btnsalir"
         android:text="@string/btnsalir"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:typeface="normal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btneliminar" />
+
+    <EditText
+        android:id="@+id/txtcontra"
+        android:layout_width="292dp"
+        android:layout_height="46dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="28dp"
+        android:background="@drawable/tema_caja_txt"
+        android:drawableLeft="@drawable/ic_baseline_lock_24"
+        android:ems="10"
+        android:hint="@string/txtcontra"
+        android:inputType="textPassword"
+        android:padding="10dp"
+        android:textAlignment="center"
+        android:textColor="@color/colorAccent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.512"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtmail" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="185dp"
+        android:layout_height="169dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.101"
+        app:srcCompat="@drawable/uladech" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

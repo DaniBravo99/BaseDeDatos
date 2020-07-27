@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">InicioSesion</string>
-    <string name="text_view">BIENVENIDO ESTUDIANTE</string>
-    <string name="txtmail">Ingrese Correo Electronico</string>
-    <string name="txtcontra">Ingrese contraseña</string>
+    <string name="text_view">BIENVENIDO</string>
+    <string name="txtmail">Correo Electronico</string>
+    <string name="txtcontra">Contraseña</string>
     <string name="btningresar">Ingresar</string>
     <string name="btneliminar">Eliminar</string>
     <string name="btnsalir">Salir</string>
@@ -19,15 +19,15 @@
 
     <string name="txtcodi">C0001</string>
     <string name="txtusu">U0001</string>
-    <string name="txtedad">Ingresar Edad</string>
-    <string name="txtpre">Ingrese Etapa Prenatal</string>
+    <string name="txtedad">Edad</string>
+    <string name="txtpre">Etapa Prenatal</string>
     <string name="registrar">Registrar</string>
     <string name="buscar">Buscar</string>
     <string name="modficar">Modificar</string>
     <string name="eliminar">Eliminar</string>
 
 
-    <string name="txtconsultar">Ingrese Codigo Usuario</string>
+    <string name="txtconsultar">Codigo Usuario</string>
     <string name="btnconsultar">Consultar</string>
     <string name="btnborrar">Limpiar</string>
 
