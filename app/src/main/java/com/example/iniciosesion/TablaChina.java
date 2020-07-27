@@ -116,6 +116,7 @@ public class TablaChina extends AppCompatActivity {
             codigochina.setText("");
             sexobb.setSelection(Posicion(sexobb, inicializar));
             codiusu.setText("");
+            datos.setText("");
             edad.setText("");
             prenatal.setText("");
 
