@@ -17,7 +17,7 @@ import android.widget.Toast;
 
 public class usuario extends AppCompatActivity {
 
-    private EditText codigo, nombre, apellido;
+    private EditText codigo, nombre, apellido, dni;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,7 +27,7 @@ public class usuario extends AppCompatActivity {
         codigo= (EditText)findViewById(R.id.txtcodigo);
         nombre= (EditText)findViewById(R.id.txtnombre);
         apellido= (EditText)findViewById(R.id.txtapellido);
-
+        dni=(EditText)findViewById(R.id.txtdni);
     }
 
     @Override
@@ -74,21 +74,25 @@ public class usuario extends AppCompatActivity {
         SQLiteDatabase BaseDatabase=admin.getWritableDatabase();
 
       String usu=codigo.getText().toString();
+      String dniusu= dni.getText().toString();
       String nom=nombre.getText().toString();
       String ape=apellido.getText().toString();
 
-       if(!usu.isEmpty() && !nom.isEmpty() && !ape.isEmpty()){
+       if(!usu.isEmpty() && !dniusu.isEmpty() && !nom.isEmpty() && !ape.isEmpty()){
 
            ContentValues filas= new ContentValues();
            filas.put("codigo", usu);
+           filas.put("dni", dniusu);
            filas.put("nombre", nom);
            filas.put("apellido", ape);
 
            BaseDatabase.insert("usuario", null, filas);
            BaseDatabase.close();
            codigo.setText("");
+           dni.setText("");
            nombre.setText("");
            apellido.setText("");
+           codigo.setFocusable(true);
 
            Toast.makeText(this,"Registrado Correctamente", Toast.LENGTH_LONG).show();
 
@@ -106,27 +110,28 @@ public class usuario extends AppCompatActivity {
                 1);
         SQLiteDatabase BaseDatabase=admin.getWritableDatabase();
 
-        String usu=codigo.getText().toString();
+        String codigousu=codigo.getText().toString();
 
-        if (!usu.isEmpty()){
-      Cursor bus= BaseDatabase.rawQuery("Select nombre, apellido from usuario where codigo= '"+usu+"'", null);
+        if (!codigousu.isEmpty()){
+            Cursor bus= BaseDatabase.rawQuery("Select dni,nombre, apellido from usuario where codigo="+codigousu, null);
 
             if(bus.moveToFirst()){
-                nombre.setText(bus.getString(0));
-                apellido.setText(bus.getString(1));
+                dni.setText(bus.getString(0));
+                nombre.setText(bus.getString(1));
+                apellido.setText(bus.getString(2));
 
                 Toast.makeText(this, "Usuario Encontrado", Toast.LENGTH_LONG).show();
                 BaseDatabase.close();
             } else {
                 Toast.makeText(this, "Usuario No Encontrado", Toast.LENGTH_LONG).show();
-                BaseDatabase.close();
+                dni.setText("");
+                nombre.setText("");
+                apellido.setText("");
             }
 
         } else {
             Toast.makeText(this, "Ingresar Codigo de Usuario", Toast.LENGTH_LONG).show();
         }
-
-
     }
 
     public void modificar(View view){
@@ -135,29 +140,31 @@ public class usuario extends AppCompatActivity {
                 1);
         SQLiteDatabase BaseDatabase=admin.getWritableDatabase();
 
-        String asu=codigo.getText().toString();
+        String codigousu=codigo.getText().toString();
+        String dniusu= dni.getText().toString();
         String nom=nombre.getText().toString();
         String ape=apellido.getText().toString();
 
-        if (!asu.isEmpty() && !nom.isEmpty() && !ape.isEmpty()){
+        if (!codigousu.isEmpty() && !dniusu.isEmpty() && !nom.isEmpty() && !ape.isEmpty()){
 
             ContentValues filas=new ContentValues();
-            filas.put("codigo", asu);
+            filas.put("dni", dniusu);
             filas.put("nombre", nom);
             filas.put("apellido", ape);
 
-            int val=BaseDatabase.update("usuario", filas, "codigo='"+asu+"'", null);
+            int val=BaseDatabase.update("usuario", filas, "codigo="+codigousu, null);
 
             if (val==1){
                 Toast.makeText(this, "Usuario Modificado", Toast.LENGTH_LONG).show();
+                dni.setText("");
+                nombre.setText("");
+                apellido.setText("");
             } else{
                 Toast.makeText(this, "Usuario No Modificado", Toast.LENGTH_LONG).show();
             }
-
         } else {
             Toast.makeText(this, "Ingresar codigo", Toast.LENGTH_LONG).show();
         }
-
     }
 
     public void eliminar(View view){
@@ -166,11 +173,12 @@ public class usuario extends AppCompatActivity {
                 1);
         SQLiteDatabase BaseDatabase=admin.getWritableDatabase();
 
-        String usu=codigo.getText().toString();
+        String codigousu=codigo.getText().toString();
 
-        if(!usu.isEmpty()){
-            int val=BaseDatabase.delete("usuario", "codigo='"+usu+"'", null);
+        if(!codigousu.isEmpty()){
+            int val=BaseDatabase.delete("usuario", "codigo="+codigousu, null);
             codigo.setText("");
+            dni.setText("");
             nombre.setText("");
             apellido.setText("");
 
@@ -178,16 +186,14 @@ public class usuario extends AppCompatActivity {
                 Toast.makeText(this, "Usuario Eliminado", Toast.LENGTH_LONG).show();
             } else{
                 Toast.makeText(this, "Usuario No existe", Toast.LENGTH_LONG).show();
+                codigo.setText("");
+                dni.setText("");
+                nombre.setText("");
+                apellido.setText("");
             }
         } else {
             Toast.makeText(this, "Ingresar codigo de Usuario", Toast.LENGTH_LONG).show();
         }
-    }
-
-    public void salida(View view){
-
-
-
     }
 
 }
