@@ -65,23 +65,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtcontra" />
 
-    <Button
-        android:id="@+id/btnsalir"
-        android:layout_width="115dp"
-        android:layout_height="41dp"
-        android:layout_marginTop="28dp"
-        android:background="@drawable/animacion_boton_amarillo"
-        android:fontFamily="sans-serif-condensed-medium"
-        android:onClick="btnsalir"
-        android:text="@string/btnsalir"
-        android:textColor="#FFFFFF"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:typeface="normal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btneliminar" />
-
     <EditText
         android:id="@+id/txtcontra"
         android:layout_width="292dp"

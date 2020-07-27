@@ -81,10 +81,4 @@ public class Sesion extends AppCompatActivity {
         contra.setText("");
     }
 
-    public void btnsalir(View view){
-
-        finish();
-
-    }
-
 }

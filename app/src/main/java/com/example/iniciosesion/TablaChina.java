@@ -213,6 +213,13 @@ public class TablaChina extends AppCompatActivity {
 
             if(val == 1){
                 Toast.makeText(this, "Registro Modificado", Toast.LENGTH_SHORT).show();
+                String inicializar="Seleccionar";
+                sexobb.setSelection(Posicion(sexobb, inicializar));
+                codiusu.setText("");
+                datos.setText("");
+                edad.setText("");
+                prenatal.setText("");
+                codigochina.setFocusable(true);
             } else {
                 Toast.makeText(this, "Registro no Existe", Toast.LENGTH_SHORT).show();
                 String inicializar="Seleccionar";
