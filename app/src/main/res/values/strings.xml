@@ -8,7 +8,8 @@
     <string name="btnsalir">Salir</string>
 
 
-    <string name="txt_codigo">U0001</string>
+    <string name="txt_codigo">Ingresar Codigo</string>
+    <string name="txt_dni">Ingresar DNI</string>
     <string name="txt_nombre">Nombre</string>
     <string name="txt_apellido">Apellido</string>
     <string name="BotonRegistrar">Registrar</string>
@@ -17,17 +18,19 @@
     <string name="BotonModificar">Modificar</string>
 
 
-    <string name="txtcodi">C0001</string>
-    <string name="txtusu">U0001</string>
+    <string name="txt_codigochina">Ingresar Codigo</string>
+    <string name="txtusu">Codigo Usuario</string>
+    <string name="txtdatos">Nombre</string>
     <string name="txtedad">Edad</string>
     <string name="txtpre">Etapa Prenatal</string>
     <string name="registrar">Registrar</string>
     <string name="buscar">Buscar</string>
     <string name="modficar">Modificar</string>
     <string name="eliminar">Eliminar</string>
+    <string name="verificar">Verificar</string>
 
 
-    <string name="txtconsultar">Codigo Usuario</string>
+    <string name="txtconsultar">Ingresar DNI</string>
     <string name="btnconsultar">Consultar</string>
     <string name="btnborrar">Limpiar</string>
 

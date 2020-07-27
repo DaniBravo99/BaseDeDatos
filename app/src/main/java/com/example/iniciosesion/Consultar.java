@@ -80,7 +80,7 @@ public class Consultar extends AppCompatActivity {
         if(!con.isEmpty()){
 
             Cursor c = baseDatabase.rawQuery
-                    ("Select u.nombre, u.apellido, c.edad, c.prenatal from usuario as u INNER JOIN china as c on u.codigo=c.codigo where u.codigo='"+con+"'"
+                    ("Select u.nombre, u.apellido, c.edad, c.prenatal from usuario as u INNER JOIN china as c on u.codigo=c.codigo where u.dni='"+con+"'"
                             , null);
 
             if (c.moveToFirst()){
@@ -88,21 +88,20 @@ public class Consultar extends AppCompatActivity {
                 String ape= c.getString(1);
                 String edad= c.getString(2);
                 String prenatal= c.getString(3);
-                tabla.setText("Nombre: "+nom+"\n"+ "Apellido: "+ape+"\n"+"Edad: "+edad+"\n"+"Etapa Prenatal: "+prenatal+" Semanas");
+                tabla.setText("Nombre: "+nom+"\n"+ "Apellido: "+ape+"\n"+"Edad: "+edad+" años"+"\n"+"Etapa Prenatal: "+prenatal+" Semanas");
 
             } else {
                 Toast.makeText(this, "No se encuentra Registro", Toast.LENGTH_LONG).show();
+                tabla.setText("");
             }
 
         } else {
-            Toast.makeText(this, "Ingrese Codigo Usuario", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Ingrese DNI", Toast.LENGTH_LONG).show();
         }
-
     }
 
     public void limpiar(View view){
         consulta.setText("");
         tabla.setText("");
     }
-
-    }
+  }

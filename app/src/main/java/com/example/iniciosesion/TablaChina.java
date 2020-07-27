@@ -20,18 +20,19 @@ import android.widget.Toast;
 public class TablaChina extends AppCompatActivity {
 
     private Spinner sexobb;
-    private EditText codigochi, codiusu, edad, prenatal;
+    private EditText codigochina, codiusu, edad, prenatal, datos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tabla_china);
 
-        codigochi = (EditText)findViewById(R.id.txtcodi);
+        codigochina = (EditText)findViewById(R.id.txtcodi);
         codiusu = (EditText)findViewById(R.id.txtcod_usu);
         sexobb=(Spinner)findViewById(R.id.spinner);
         edad=(EditText)findViewById(R.id.txtedad);
         prenatal=(EditText)findViewById(R.id.txtprenatal);
+        datos=(EditText)findViewById(R.id.txtdatos);
 
         String val[]={"Seleccionar", "Femenino", "Masculino"};
         ArrayAdapter<String> opcion= new ArrayAdapter(this, android.R.layout.simple_expandable_list_item_1, val);
@@ -87,7 +88,6 @@ public class TablaChina extends AppCompatActivity {
                 posicion = i;
             }
         }
-
         return posicion;
     }
 
@@ -95,7 +95,7 @@ public class TablaChina extends AppCompatActivity {
         AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(this, "Administracion", null, 1);
         SQLiteDatabase baseDatabase = admin.getWritableDatabase();
 
-        String codigochina = codigochi.getText().toString();
+        String china=codigochina.getText().toString();
         String sexo=sexobb.getSelectedItem().toString();
         String codgoiusu = codiusu.getText().toString();
         String edadusu = edad.getText().toString();
@@ -103,18 +103,17 @@ public class TablaChina extends AppCompatActivity {
 
         String inicializar="Seleccionar";
 
-
-        if(!codigochina.isEmpty() && !sexo.isEmpty() && !codgoiusu.isEmpty() && !edadusu.isEmpty() && !prenatalusu.isEmpty()){
+        if(!china.isEmpty() && !sexo.isEmpty() && !codgoiusu.isEmpty() && !edadusu.isEmpty() && !prenatalusu.isEmpty()){
             ContentValues filas = new ContentValues();
 
-            filas.put("codigo_chi", codigochina);
+            filas.put("codigo_chi", china);
             filas.put("sexobebe", sexo);
             filas.put("codigo", codgoiusu);
             filas.put("edad", edadusu);
             filas.put("prenatal", prenatalusu);
             baseDatabase.insert("china", null, filas);
             baseDatabase.close();
-            codigochi.setText("");
+            codigochina.setText("");
             sexobb.setSelection(Posicion(sexobb, inicializar));
             codiusu.setText("");
             edad.setText("");
@@ -130,11 +129,11 @@ public class TablaChina extends AppCompatActivity {
         AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(this, "Administracion", null, 1);
         SQLiteDatabase baseDatabase = admin.getWritableDatabase();
 
-        String codigochina = codigochi.getText().toString();
+        String china=codigochina.getText().toString();
 
-        if(!codigochina.isEmpty()){
+        if(!china.isEmpty()){
             Cursor fila = baseDatabase.rawQuery
-         ("select sexobebe, codigo, edad, prenatal from china where codigo_chi ='"+codigochina+"'", null);
+    ("select  u.nombre, c.sexobebe, c.codigo, c.edad, c.prenatal from usuario as u INNER JOIN china as c on u.codigo=c.codigo where codigo_chi ="+china, null);
 
             if(fila.moveToFirst()){
                 String sexo= fila.getString(0);
@@ -148,6 +147,12 @@ public class TablaChina extends AppCompatActivity {
 
             } else {
                 Toast.makeText(this,"Registro No existe", Toast.LENGTH_SHORT).show();
+                String inicializar="Seleccionar";
+                sexobb.setSelection(Posicion(sexobb, inicializar));
+                codiusu.setText("");
+                datos.setText("");
+                edad.setText("");
+                prenatal.setText("");
             }
 
         } else {
@@ -159,17 +164,17 @@ public class TablaChina extends AppCompatActivity {
         AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(this, "Administracion", null, 1);
         SQLiteDatabase baseDatabase = admin.getWritableDatabase();
 
-        String codigochina = codigochi.getText().toString();
+        String china=codigochina.getText().toString();
         String inicializar="Seleccionar";
 
-        if(!codigochina.isEmpty()){
+        if(!china.isEmpty()){
 
-            int val = baseDatabase.delete("china", "codigo='"+codigochina+"'", null);
+            int val = baseDatabase.delete("china", "codigo_chi="+china, null);
             baseDatabase.close();
-
-            codigochi.setText("");
+            codigochina.setText("");
             sexobb.setSelection(Posicion(sexobb, inicializar));
             codiusu.setText("");
+            datos.setText("");
             edad.setText("");
             prenatal.setText("");
 
@@ -188,32 +193,58 @@ public class TablaChina extends AppCompatActivity {
         AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(this, "Administracion", null, 1);
         SQLiteDatabase baseDatabase = admin.getWritableDatabase();
 
-        String codigochina = codigochi.getText().toString();
+        String china=codigochina.getText().toString();
         String sexo=sexobb.getSelectedItem().toString();
         String codgoiusu = codiusu.getText().toString();
         String edadusu = edad.getText().toString();
         String prenatalusu = prenatal.getText().toString();
 
-        if(!codigochina.isEmpty() && !sexo.isEmpty() && !codgoiusu.isEmpty() && !edadusu.isEmpty() && !prenatalusu.isEmpty()){
+        if(!china.isEmpty() && !sexo.isEmpty() && !codgoiusu.isEmpty() && !edadusu.isEmpty() && !prenatalusu.isEmpty()){
 
             ContentValues filas = new ContentValues();
-            filas.put("codigo_chi", codigochina);
             filas.put("sexobebe", sexo);
             filas.put("codigo", codgoiusu);
             filas.put("edad", edadusu);
             filas.put("prenatal", prenatalusu);
 
-            int val = baseDatabase.update("china", filas, "codigo='"+codigochina+"'", null);
+            int val = baseDatabase.update("china", filas, "codigo_chi="+china, null);
             baseDatabase.close();
 
             if(val == 1){
                 Toast.makeText(this, "Registro Modificado", Toast.LENGTH_SHORT).show();
             } else {
                 Toast.makeText(this, "Registro no Existe", Toast.LENGTH_SHORT).show();
+                String inicializar="Seleccionar";
+                sexobb.setSelection(Posicion(sexobb, inicializar));
+                codiusu.setText("");
+                datos.setText("");
+                edad.setText("");
+                prenatal.setText("");
             }
 
         } else {
             Toast.makeText(this, "Completar los campos", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public void verificar(View view){
+        AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(this, "Administracion", null, 1);
+        SQLiteDatabase baseDatabase = admin.getWritableDatabase();
+
+        String codgoiusu = codiusu.getText().toString();
+
+        Cursor d=baseDatabase.rawQuery("Select nombre from usuario where codigo="+codgoiusu, null);
+
+        if(d.moveToFirst()){
+            String cod= d.getString(0);
+            datos.setText(cod);
+            baseDatabase.close();
+
+            //  Toast.makeText(this, "Usuario Verificado", Toast.LENGTH_SHORT).show();
+
+        } else {
+            datos.setText("No registrado");
+            // Toast.makeText(this, "No se encuentra el usuario", Toast.LENGTH_SHORT).show();
         }
     }
 
